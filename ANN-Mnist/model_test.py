@@ -14,15 +14,27 @@ import numpy as np
 (x_train,y_train),(x_test,y_test)=mnist.load_data()
 model=models.load_model('mnist.h5')
 
+
+
+
 inx=np.random.randint(0,10000)
 rakam=x_test[inx,:,:]
-plt.imshow(rakam,cmap='gray')
+
+
 
 #seçilen görüntüyü modele uygula
 
 y=model.predict(rakam.reshape(1,784)/255)
 tahmin_sonuc=np.argmax(y)
 
-print("seçilen görüntü=",inx)
-print("beklenen sonuç= ",y_test[inx])
-print("tahmin sonucu=",tahmin_sonuc)
+ax=plt.subplot()
+ax.set_yticks([])
+ax.set_xticks([])
+ax.set_xlabel('label:{0}\npred:{1}'.format(y_test[inx],tahmin_sonuc))
+plt.imshow(rakam,cmap='gray')
+
+
+
+
+
+
